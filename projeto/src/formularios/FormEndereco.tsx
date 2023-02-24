@@ -14,7 +14,7 @@ interface IFormInputs{
 
   const schema = yup.object().shape({
     nomeLocal: yup.string().required(),
-    numSala: yup.string().email().required()
+    numSala: yup.string().required()
     .required(),
   }).required();
   type FormData = yup.InferType<typeof schema>;
@@ -27,25 +27,43 @@ const FormularioEndereco = () =>{
 
     const onSubmitHandler: any = async (data:FormData) =>{
 
-     const res = await instance.post("/api/collaborators/create", data)
+        try {
 
-      if(res.status === 200){
-        console.log("Resultado", res.status)
-        console.log("Mensagem: ", res.data.success)
-        swal({
-            title: "Sucesso!",
-            text: res.data.message,
-            icon: "success",
-          });
-          reset()
-      }
-      else{
-            swal({
-                title: "Email cadastrado",
-                text: res.data.message,
-                icon: "success",
-              });
-          }  
+            const res = await instance.post("/api/places/create", data)
+            if(res.status === 200 ){
+                    console.log("Resultado", res)
+                    console.log("Mensagem: ", res.data.success)
+                    swal({
+                        title: " Dados salvo com sucesso!",
+                        text: res.data.message,
+                        icon: "success",
+                      });
+                      reset()
+                  }
+            
+        } catch (error) {
+            
+        }
+
+    //  const res = await instance.post("/api/places/create", data)
+     
+
+    //   if(res.status === 200 ){
+    //     console.log("Resultado", res)
+    //     console.log("Mensagem: ", res.data.success)
+    //     swal({
+    //         title: " Dados salvo com sucesso!",
+    //         text: res.data.message,
+    //         icon: "success",
+    //       });
+    //       reset()
+    //   } else{
+    //     swal({
+    //         title: "Email cadastrado!",
+    //         text: res.data.message,
+    //         icon: "success",
+    //       });
+    //   }
   };
 
 

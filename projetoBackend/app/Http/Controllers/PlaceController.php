@@ -20,23 +20,23 @@ class PlaceController extends Controller
             $insert['nomeLocal'] = $request['nomeLocal'];
             $insert['numSala'] = $request['numSala'];
 
-            Place::create($request);
+            Place::insert($insert);
 
            $response['message'] = "Dados salvos com sucesso!";
            $response['sucess'] = true;
 
         } catch (\Exception $e) {
-             $response['message'] = $e->getMessage("Não foi possível salvar os dados!");
+            $response['message'] = $e->getMessage("Não foi possível salvar os dados!");
             $response['success'] = false;
         }
     }
 
-    public function index(Request $request)
+    public function index()
     {
         return PlaceResource::collection(Place::all()); 
     }
 
-    public function paginate(Request $request){
+    public function paginate(){
         return  PlaceResource::collection(Place::paginate(10));
      }
 }

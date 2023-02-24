@@ -34,26 +34,45 @@ const FormularioCadastroColaborador = () =>{
     const {register, handleSubmit, formState: {errors}, reset} = useForm<IFormInputs>({resolver: yupResolver(schema)});
 
     const onSubmitHandler: any = async (data:FormData) =>{
-
-     const res = await instance.post("/api/collaborators/create", data)
-
-      if(res.status === 200){
-        console.log("Resultado", res.status)
-        console.log("Mensagem: ", res.data.success)
-        swal({
-            title: "Sucesso!",
-            text: res.data.message,
-            icon: "success",
-          });
-          reset()
-      }
-      else{
+        try {
+            const res = await instance.post("/api/collaborators/create", data)
+            if(res.status === 200){
+                    console.log("Resultado", res.status)
+                    console.log("Mensagem: ", res.data.success)
+                    swal({
+                        title: "Sucesso!",
+                        text: res.data.message,
+                        icon: "success",
+                      });
+                      reset()
+                  }
+        } catch (error) {
             swal({
-                title: "Email cadastrado",
-                text: res.data.message,
-                icon: "success",
-              });
-          }  
+                            title: "Email cadastrado",
+                            text: "teste",
+                            icon: "success",
+                          }); 
+        }
+     
+    //  console.log("Dados:", res.request.status);
+
+    //   if(res.status === 200){
+    //     console.log("Resultado", res.status)
+    //     console.log("Mensagem: ", res.data.success)
+    //     swal({
+    //         title: "Sucesso!",
+    //         text: res.data.message,
+    //         icon: "success",
+    //       });
+    //       reset()
+    //   }
+    //   else{
+    //         swal({
+    //             title: "Email cadastrado",
+    //             text: res.data.message,
+    //             icon: "success",
+    //           });
+    //       }  
   };
 
 

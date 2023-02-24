@@ -1,8 +1,7 @@
-import React from "react";
 import { Box, Container, TextField } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 
-const InputPesquisa: React.FC = () =>{
+const InputPesquisa = () =>{
 
     return(
     <>

@@ -15,8 +15,8 @@ class PlaceResource extends ResourceCollection
     public function toArray($request)
     {
         return [
-            "nomeLocal" => $this->nome,
-            "numSala" => $this->email,
+            "nomeLocal" => $this->nomeLocal,
+            "numSala" => $this->numSala,
         ];
     }
 }
